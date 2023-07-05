@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
+
 import '../../../components/my_widgets_animator.dart';
 import '../controllers/home_controller.dart';
 
@@ -16,20 +16,26 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
       ),
       body: GetBuilder<HomeController>(
-        builder: (_){
+        builder: (_) {
           return MyWidgetsAnimator(
             apiCallStatus: controller.apiCallStatus,
-            loadingWidget: () => const Center(child: CircularProgressIndicator(),),
-            errorWidget: ()=> const Center(child: Text('Something went Wrong!'),),
-            successWidget: () =>
-                ListView.separated(
-                  itemCount: controller.data?.length ?? 0,
-                  separatorBuilder: (_,__) => SizedBox(height: 10.h,),
-                  itemBuilder: (ctx,index) => ListTile(
-                    title: Text(controller.data![index]['userId'].toString()),
-                    subtitle: Text(controller.data![index]['title']),
-                  ),
-                ),
+            loadingWidget: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+            errorWidget: () => const Center(
+              child: Text('Something went Wrong!'),
+            ),
+            successWidget: () => ListView.separated(
+              itemCount: controller.data?.length ?? 0,
+              separatorBuilder: (_, __) => SizedBox(
+                height: 10.h,
+              ),
+              itemBuilder: (ctx, index) => ListTile(
+                title: Text(controller.data![index]['id'].toString()),
+                subtitle: Text(controller.data![index]['title']),
+                trailing: Image.network(controller.data![index]['url']),
+              ),
+            ),
           );
         },
       ),

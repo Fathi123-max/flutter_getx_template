@@ -18,15 +18,15 @@ enum RequestType {
 
 class BaseClient {
   static final Dio _dio = Dio()
-  ..interceptors.add(PrettyDioLogger(
-    requestHeader: true,
-    requestBody: true,
-    responseBody: true,
-    responseHeader: false,
-    error: true,
-    compact: true,
-    maxWidth: 90,
-  ));
+    ..interceptors.add(PrettyDioLogger(
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: 90,
+    ));
 
   /// dio getter (used for testing)
   static get dio => _dio;
@@ -113,7 +113,9 @@ class BaseClient {
       await _dio.download(
         url,
         savePath,
-        options: Options(receiveTimeout: 999999, sendTimeout: 999999),
+        options: Options(
+            receiveTimeout: Duration(microseconds: 99999),
+            sendTimeout: Duration(microseconds: 99999)),
         onReceiveProgress: onReceiveProgress,
       );
       onSuccess();
@@ -183,7 +185,7 @@ class BaseClient {
     }
 
     // no internet connection
-    if (error.message.toLowerCase().contains('socket')) {
+    if (error.message!.toLowerCase().contains('socket')) {
       if (onError != null) {
         return onError(ApiException(
           message: Strings.noInternetConnection.tr,
@@ -211,7 +213,7 @@ class BaseClient {
 
     var exception = ApiException(
         url: url,
-        message: error.message,
+        message: error.message!,
         response: error.response,
         statusCode: error.response?.statusCode);
     if (onError != null) {
