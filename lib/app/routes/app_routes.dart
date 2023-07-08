@@ -11,7 +11,7 @@ abstract class Routes {
   static const MY_PRPERTY = _Paths.MY_PRPERTIES;
   static const SEARCH = _Paths.SEARCH;
   static const CHAT = _Paths.CHAT;
-  static const PROPERTY_DETAILS = _Paths.PROPERTY_DETAILS;
+  static const CATOGRY_PAGE = _Paths.CATOGRY_PAGE;
 }
 
 abstract class _Paths {
@@ -25,4 +25,5 @@ abstract class _Paths {
   static const MY_PRPERTIES = '/myproperties';
   static const SEARCH = '/search';
   static const PROPERTY_DETAILS = '/propertyDetails';
+  static const CATOGRY_PAGE = '/catogryPage';
 }
