@@ -16,5 +16,10 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => HomeView(),
+      binding: HomeBinding(),
+    ),
   ];
 }
