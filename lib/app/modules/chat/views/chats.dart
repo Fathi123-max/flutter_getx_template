@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -14,9 +15,9 @@ import 'package:path_provider/path_provider.dart';
 
 class ChatPage extends StatefulWidget {
   ChatPage({
-    super.key,
+    Key? key,
     required this.room,
-  });
+  }) : super(key: key);
 
   final types.Room room;
 

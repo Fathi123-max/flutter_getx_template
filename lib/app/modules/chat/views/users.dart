@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:haider/utills/customColors.dart';
 
-import '../../controllers/used/rentAndRentOutController.dart';
-import '../../utills/chatutlies.dart';
+import '../../../components/chatutlies.dart';
 import 'chats.dart';
 
 class UsersPage extends StatelessWidget {
-  const UsersPage({super.key});
+  const UsersPage({
+    Key? key,
+  }) : super(key: key);
 
   Widget _buildAvatar(types.User user) {
     final color = getUserAvatarNameColor(user);
@@ -64,11 +63,12 @@ class UsersPage extends StatelessWidget {
             }
 
             // more filter in data base
-            final filteredUsers = snapshot.data!
-                .where((user) =>
-                    user.firstName ==
-                    Get.put(RentAndRentOutController()).username.value)
-                .toList();
+            final filteredUsers = [];
+            //  snapshot.data!
+            //     .where((user) =>
+            //         user.firstName ==
+            //         Get.put(RentAndRentOutController()).username.value)
+            //     .toList();
 
             return ListView.builder(
               itemCount: filteredUsers.length,
@@ -85,12 +85,14 @@ class UsersPage extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           bottomLeft: Radius.circular(30)),
-                      color: CustomColors.secondary_color,
+                      color: Colors.red
+                      // CustomColors.secondary_color
+                      ,
                     ),
                     child: Center(
                       child: FaIcon(
-                        color: Colors.white,
                         FontAwesomeIcons.whatsapp,
+                        color: Colors.white,
                         size: 30,
                       ),
                     ),
